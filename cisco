@@ -1,0 +1,7 @@
+conf t
+
+ip sla reaction-configuration 1 react timeout threshold-type consecutive 3
+
+event manager applet LOG_DOWN
+ event syslog pattern "Occurred"
+ action 001 syslog msg "Inet host is DOWN"
