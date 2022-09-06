@@ -1,3 +1,29 @@
 apt install iptables-persistent
 iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o ens3 -j MASQUERADE
 netfilter-persistent save
+
+brctl
+
+apt-get install bridge-utils
+brctl addbr br0
+brctl stp br0 on
+ip link set ens7 down
+ip link set ens8 down 
+brctl addif br0 ens7
+brctl addif br0 ens8
+
+далее включаем ens7-8 и br0 и идем в /etc/network/interfaces
+auto ens7
+iface ens7 inet static
+address 0.0.0.0
+
+auto ens8
+iface ens8 inet static
+address 0.0.0.0
+
+auto br0
+iface br0 inet static
+bridges_ports ens7 ens8
+bridges_stp on
+address 203.0.113.1
+netmask 255.255.255.0
