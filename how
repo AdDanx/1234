@@ -1,3 +1,5 @@
+echo $XDG_CURRENT_DESKTOP
+
 apt install iptables-persistent
 iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o ens3 -j MASQUERADE
 netfilter-persistent save
