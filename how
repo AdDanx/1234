@@ -27,3 +27,15 @@ bridges_ports ens7 ens8
 bridges_stp on
 address 203.0.113.1
 netmask 255.255.255.0
+
+
+
+
+
+Если не заработает ospf (на fw делаем)
+Ip route 192.168.0.0 255.255.0.0 10.1.2.2
+Ip route 192.168.0.0 255.255.0.0 10.1.3.2
+!
+Делаем NAT на FW
+iptables -t nat -A POSTROUTING -s 203.0.113.0/24 -o gre100 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 203.0.113.0/24 -o gre200 -j MASQUERADE
