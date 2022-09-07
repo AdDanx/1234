@@ -1,3 +1,8 @@
+doskey vpn_start="C:\Program Files\Openvpn\bin\openvpn-gui.exe" --connect test.ovpn
+doskey vpn_stop="C:\Program Files\Openvpn\bin\openvpn-gui.exe" --command disconnect_all
+
+
+
 echo $XDG_CURRENT_DESKTOP
 
 apt install iptables-persistent
